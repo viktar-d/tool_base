@@ -11,9 +11,9 @@ environment:
 dependencies:
   # To update these, use "flutter update-packages --force-upgrade".
   archive: ^2.0.9
-  file: ^5.0.8
-  platform: ^2.2.0
-  process: ^3.0.9
+  file: any
+  platform: any
+  process: any
   pub_cache: ^0.2.3
 
 dev_dependencies:
