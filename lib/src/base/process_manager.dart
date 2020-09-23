@@ -5,8 +5,8 @@
 import 'dart:async';
 
 import 'package:process/process.dart';
-import 'package:process/record_replay.dart';
 
+import '../../process/record_replay.dart';
 import 'common.dart';
 import 'context.dart';
 import 'file_system.dart';
@@ -16,7 +16,8 @@ const String _kRecordingType = 'process';
 const ProcessManager _kLocalProcessManager = LocalProcessManager();
 
 /// The active process manager.
-ProcessManager get processManager => context.get<ProcessManager>() ?? _kLocalProcessManager;
+ProcessManager get processManager =>
+    context.get<ProcessManager>() ?? _kLocalProcessManager;
 
 /// Gets a [ProcessManager] that will record process invocation activity to the
 /// specified base recording [location].
@@ -28,7 +29,8 @@ ProcessManager get processManager => context.get<ProcessManager>() ?? _kLocalPro
 RecordingProcessManager getRecordingProcessManager(String location) {
   final Directory dir = getRecordingSink(location, _kRecordingType);
   const ProcessManager delegate = LocalProcessManager();
-  final RecordingProcessManager manager = RecordingProcessManager(delegate, dir);
+  final RecordingProcessManager manager =
+      RecordingProcessManager(delegate, dir);
   addShutdownHook(() async {
     await manager.flush(finishRunningProcesses: true);
   }, ShutdownStage.SERIALIZE_RECORDING);
